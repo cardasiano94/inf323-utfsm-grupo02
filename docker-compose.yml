@@ -19,7 +19,7 @@ services:
     environment:
       DATABASE_URL: postgres://postgres_admin:Bola1@db/postgres_db
       REDIS_URL: redis://redis
-      DJANGO_MANAGEPY_MIGRATE: on
+      DJANGO_MANAGEPY_MIGRATE: "on"
     build:
       context: .
       dockerfile: ./Dockerfile
