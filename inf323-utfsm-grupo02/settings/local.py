@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'cfehome.urls'
+ROOT_URLCONF = 'inf323-utfsm-grupo02.urls'
 
 TEMPLATES = [
     {
@@ -67,7 +67,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'cfehome.wsgi.application'
+WSGI_APPLICATION = 'inf323-utfsm-grupo02.wsgi.application'
 
 
 # Database
