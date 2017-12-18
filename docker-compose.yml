@@ -16,13 +16,11 @@ services:
     expose:
       - "6379"
   app:
+    image: "grupo02docker/inf323-utfsm-grupo02:latest"
     environment:
       DATABASE_URL: postgres://postgres_admin:Bola1@db/postgres_db
       REDIS_URL: redis://redis
-      DJANGO_MANAGEPY_MIGRATE: on
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+      DJANGO_MANAGEPY_MIGRATE: "on"
     links:
       - db:db
       - redis:redis
