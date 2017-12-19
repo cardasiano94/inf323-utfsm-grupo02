@@ -8,7 +8,8 @@ ADD requirements.txt /requirements.txt
 
 # Install build deps, then run `pip install`, then remove unneeded build deps all in a single step. Correct the path to your production requirements file, if needed.
 
-RUN pyvenv /venv && /venv/bin/pip install -U pip
+RUN pyvenv /venv \
+    && /venv/bin/pip install -U pip \
     && LIBRARY_PATH=/lib:/usr/lib /bin/sh -c "/venv/bin/pip install --no-cache-dir -r /requirements.txt" \
     && runDeps="$( \
             scanelf --needed --nobanner --recursive /venv \
