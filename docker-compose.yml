@@ -11,8 +11,8 @@ services:
     expose:
       - "5432"
   app:
-    image: "grupo02docker/inf323-utfsm-grupo02:latest"
-    command: python manage.py runserver 0.0.0.0:8000
+    build:
+      context: .
     environment:
       DATABASE_URL: postgres://postgres_admin:Bola1@db/postgres_db
       DJANGO_MANAGEPY_MIGRATE: "on"

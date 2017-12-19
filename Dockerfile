@@ -10,7 +10,7 @@ ADD requirements.txt /requirements.txt
 
 RUN pyvenv /venv \
     && /venv/bin/pip install -U pip \
-    && LIBRARY_PATH=/lib:/usr/lib /bin/sh -c "/venv/bin/pip install --no-cache-dir -r /requirements.txt" \
+    && LIBRARY_PATH=/lib:/usr/lib /bin/sh -c "/venv/bin/pip install --no-cache-dir -r /requirements.txt"
 
 #RUN set -ex \
 #    && apk add --no-cache --virtual .build-deps \
@@ -50,8 +50,8 @@ ENV DJANGO_SETTINGS_MODULE=inf323-utfsm-grupo02.settings.production
 ENV UWSGI_VIRTUALENV=/venv UWSGI_WSGI_FILE=inf323-utfsm-grupo02/wsgi.py UWSGI_HTTP=:8000 UWSGI_MASTER=1 UWSGI_WORKERS=2 UWSGI_THREADS=8 UWSGI_UID=1000 UWSGI_GID=2000 UWSGI_LAZY_APPS=1 UWSGI_WSGI_ENV_BEHAVIOR=holy
 
 # Call collectstatic (customize the following line with the minimal environment variables needed for manage.py to run):
-RUN ["chmod", "+x", "/code/docker-entrypoint.sh"]
-ENTRYPOINT ["/code/docker-entrypoint.sh"]
+#RUN ["chmod", "+x", "/code/docker-entrypoint.sh"]
+#ENTRYPOINT ["/code/docker-entrypoint.sh"]
 RUN /venv/bin/python manage.py collectstatic --noinput
 
 # Start uWSGI
