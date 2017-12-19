@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from getenv import env
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -92,7 +94,23 @@ DATABASES = {
     }
 }
 
-
+# add the credentials from IAM and bucket name
+AWS_STORAGE_BUCKET_NAME = 'grupo02'  # or None if using service role
+AWS_ACCESS_KEY_ID = env(accessKey)  # or None if using service role
+AWS_SECRET_ACCESS_KEY = env(secretAccessKey)
+# if False it will create unique file names for every uploaded file
+AWS_S3_FILE_OVERWRITE = False
+# the url, that your media and static files will be available at
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+# the sub-directories of media and static files
+STATICFILES_LOCATION = 'static'
+MEDIAFILES_LOCATION = 'media'
+# a custom storage file, so we can easily put static and media in one bucket
+STATICFILES_STORAGE = 'myproject.custom_storages.StaticStorage'
+DEFAULT_FILE_STORAGE = 'myproject.custom_storages.MediaStorage'
+# the regular Django file settings but with the custom S3 URLs
+STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
+MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
