@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -93,6 +94,20 @@ DATABASES = {
 }
 
 
+AWS_STORAGE_BUCKET_NAME = 'grupo02.mosorio.me'
+AWS_ACCESS_KEY_ID = os.environ.get('accessKey', '') 
+AWS_SECRET_ACCESS_KEY = os.environ.get('secretAccessKey', '')
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+# the sub-directories of media and static files
+AWS_LOCATION = 'static'
+AWS_S3_SECURE_URLS = False
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = []
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators

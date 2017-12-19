@@ -13,6 +13,8 @@ services:
   app:
     build:
       context: .
+    env_file:
+      - ./.env
     environment:
       DATABASE_URL: postgres://postgres_admin:Bola1@db/postgres_db
       DJANGO_MANAGEPY_MIGRATE: "on"
