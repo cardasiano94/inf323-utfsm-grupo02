@@ -52,6 +52,7 @@ ENV UWSGI_VIRTUALENV=/venv UWSGI_WSGI_FILE=inf323-utfsm-grupo02/wsgi.py UWSGI_HT
 # Call collectstatic (customize the following line with the minimal environment variables needed for manage.py to run):
 #RUN ["chmod", "+x", "/code/docker-entrypoint.sh"]
 #ENTRYPOINT ["/code/docker-entrypoint.sh"]
+
 RUN /venv/bin/python manage.py collectstatic --noinput
 
 # Start uWSGI

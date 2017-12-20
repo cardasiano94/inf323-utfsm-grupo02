@@ -93,10 +93,12 @@ DATABASES = {
     }
 }
 
-
+S3_USE_SIGV4 = True
 AWS_STORAGE_BUCKET_NAME = 'grupo02.mosorio.me'
-AWS_ACCESS_KEY_ID = os.environ.get('accessKey', '') 
-AWS_SECRET_ACCESS_KEY = os.environ.get('secretAccessKey', '')
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', '') 
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', '')
+AWS_DEFAULT_REGION = 'us-east-1'
+AWS_S3_SIGNATURE_VERSION = 's3v4'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_LOCATION = 'static'
 AWS_S3_SECURE_URLS = False
