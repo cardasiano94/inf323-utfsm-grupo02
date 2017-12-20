@@ -53,12 +53,8 @@ ENV UWSGI_VIRTUALENV=/venv UWSGI_WSGI_FILE=inf323-utfsm-grupo02/wsgi.py UWSGI_HT
 #RUN ["chmod", "+x", "/code/docker-entrypoint.sh"]
 #ENTRYPOINT ["/code/docker-entrypoint.sh"]
 
-RUN /venv/bin/python manage.py collectstatic --noinput
+#RUN /venv/bin/python manage.py collectstatic --noinput
 
 # Start uWSGI
 CMD ["/venv/bin/uwsgi", "--http-auto-chunked", "--http-keepalive"]
 
-ARG accessKey
-ARG secretAccessKey
-ENV accessKey=${accessKey}
-ENV secretAccessKey=${secretAccessKey}
