@@ -9,3 +9,4 @@ pytz==2017.2
 uWSGI==2.0.15
 django-storages==1.5.1
 boto3==1.4.1
+awscli

@@ -56,3 +56,8 @@ RUN /venv/bin/python manage.py collectstatic --noinput
 
 # Start uWSGI
 CMD ["/venv/bin/uwsgi", "--http-auto-chunked", "--http-keepalive"]
+
+ARG accessKey
+ARG secretAccessKey
+ENV accessKey=${accessKey}
+ENV secretAccessKey=${secretAccessKey}

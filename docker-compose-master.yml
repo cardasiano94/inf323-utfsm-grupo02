@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+  db:
+    environment:
+      POSTGRES_DB: postgres_db
+      POSTGRES_USER: postgres_admin
+      POSTGRES_PASSWORD: Bola1
+    restart: always
+    image: postgres:9.6
+    expose:
+      - "5432"
+  app:
+    build:
+      context: .
+    env_file:
+      - .env_vars
+    environment:
+      DATABASE_URL: postgres://postgres_admin:Bola1@db/postgres_db
+      DJANGO_MANAGEPY_MIGRATE: "on"
+    links:
+      - db:db
+    ports:
+      - "8000:8000"
