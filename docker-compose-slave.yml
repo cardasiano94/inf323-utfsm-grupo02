@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  app:
+    build:
+      context: .
+    env_file:
+      - ./.env_vars
+    environment:
+      DATABASE_URL: postgres://postgres_admin:Bola1@db/postgres_db
+      DJANGO_MANAGEPY_MIGRATE: "on"
+    links:
+      - db:db
+    ports:
+      - "8000:8000"
